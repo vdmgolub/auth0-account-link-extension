@@ -6,8 +6,7 @@ module.exports = function(currentUser, matchingUsers, params, token) {
   try {
     loadLinkPage(token);
   } catch (e) {
-    console.error(e);
-    loadInvalidTokenPage();
+    loadInvalidTokenPage(e);
   }
 
   function loadLinkPage(token) {
@@ -61,10 +60,12 @@ module.exports = function(currentUser, matchingUsers, params, token) {
     }
   }
 
-  function loadInvalidTokenPage() {
+  function loadInvalidTokenPage(e) {
     var containerEl = document.getElementById('content-container');
     var labelEl = document.getElementById('label-value');
     var linkEl = document.getElementById('link');
+
+    labelEl.innerHTML = `${e}`;
 
     containerEl.innerHTML = '';
     containerEl.appendChild(
