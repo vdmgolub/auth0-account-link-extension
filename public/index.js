@@ -6,6 +6,7 @@ module.exports = function(currentUser, matchingUsers, params, token) {
   try {
     loadLinkPage(token);
   } catch (e) {
+    console.trace(e);
     loadInvalidTokenPage(e);
   }
 
@@ -37,7 +38,7 @@ module.exports = function(currentUser, matchingUsers, params, token) {
       linkEl.href = domain + 'continue?state=' + state;
     };
 
-    linkEl.addEventListener('click', function(e) {
+    linkEl.addEventListener('click', function() {
       authorize(token.iss, {
         client_id: params.client_id,
         redirect_uri: params.redirect_uri,
