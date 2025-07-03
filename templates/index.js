@@ -22,7 +22,8 @@ const renderTemplate = ({
   identities,
   locale,
   params,
-  token
+  token,
+  error
 }) =>
   Promise.all([buildAuth0Widget(dynamicSettings, identities, locale), getStorage().read()])
     .then(([widget, data]) => {
@@ -32,7 +33,7 @@ const renderTemplate = ({
         ExtensionCSS: stylesheetTag,
         CustomCSS: customCSSTag,
         Auth0Widget: widget,
-        ExtensionScripts: buildExtensionScripts(currentUser, matchingUsers, params, token)
+        ExtensionScripts: buildExtensionScripts(currentUser, matchingUsers, params, token, error)
       });
     });
 

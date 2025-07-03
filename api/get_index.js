@@ -77,7 +77,8 @@ module.exports = () => ({
         stylesheetTag,
         currentUser: null,
         matchingUsers: [],
-        customCSSTag
+        customCSSTag,
+        error: tokenError
       });
 
       return h.response(template).type('text/html').code(400);
